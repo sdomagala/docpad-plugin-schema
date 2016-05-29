@@ -1,7 +1,7 @@
 {
   "name": "docpad-plugin-schema",
   "version": "1.0.0",
-  "description": "Adds support for the LESS CSS pre-processor to DocPad",
+  "description": "Lets you attach JSON schema to your collection",
   "homepage": "http://docpad.org/plugin/schema",
   "license": "MIT",
   "keywords": [
