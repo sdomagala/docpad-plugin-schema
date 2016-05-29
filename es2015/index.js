@@ -36,16 +36,27 @@ exports.default = function (BasePlugin) {
         }
 
         var collections = Object.keys(config);
-        console.log(collections);
+
         collections.forEach(function (col) {
           var currentCol = docpad.getCollection(col).toJSON();
 
           var schema = collections[col];
 
           currentCol.forEach(function (record) {
-            console.log((0, _jsonschema.validate)(record.meta, schema));
+            var isValidated = (0, _jsonschema.validate)(record.meta, schema);
+
+            if (isValidated.errors && isValidated.errors.length) {
+              docpad.getFile({
+                _id: record.id
+              }).setMeta({
+                write: false,
+                render: false
+              });
+            }
           });
         });
+
+        next();
       }
     }, {
       key: 'name',
