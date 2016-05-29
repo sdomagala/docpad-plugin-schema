@@ -66,6 +66,13 @@ Basic usage:
 
 ```
 
+
+## TODO
+
+- better readme
+- more test coverage
+- attach complex schemas
+
 <!-- HISTORY/ -->
 
 <h2>History</h2>
