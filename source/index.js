@@ -22,16 +22,29 @@ export default function (BasePlugin) {
       }
 
       const collections = Object.keys(config);
-      console.log(collections);
+
       collections.forEach((col) => {
         const currentCol = docpad.getCollection(col).toJSON();
 
         const schema = collections[col];
 
         currentCol.forEach((record) => {
-          console.log(validate(record.meta, schema));
+          const isValidated = validate(record.meta, schema);
+
+          if(isValidated.errors && isValidated.errors.length) {
+            docpad
+              .getFile({
+                _id: record.id
+              })
+              .setMeta({
+                write: false,
+                render: false
+              });
+          }
         });
       });
+
+      next();
     }
   };
 
