@@ -28,7 +28,22 @@ exports.default = function (BasePlugin) {
       value: function generateBefore(opts, next) {
         var docpad = this.docpad;
 
-        docpad.getCollection();
+        var config = this.getConfig();
+
+        if (!config) {
+          console.log('There is no schema given!');
+          return next();
+        }
+
+        var collections = Object.keys(config);
+        console.log(collections);
+        collections.forEach(function (col) {
+          var currentCol = docpad.getCollection(col).toJSON();
+
+          currentCol.forEach(function (record) {
+            console.log(record.meta);
+          });
+        });
       }
     }, {
       key: 'name',
@@ -40,6 +55,12 @@ exports.default = function (BasePlugin) {
     return BaseClass;
   }(BasePlugin);
 };
+
+var _jsonschema = require('jsonschema');
+
+var _jsonschema2 = _interopRequireDefault(_jsonschema);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 

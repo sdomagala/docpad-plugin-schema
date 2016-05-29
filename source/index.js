@@ -1,3 +1,5 @@
+import jsonschema from 'jsonschema';
+
 export default function (BasePlugin) {
 
   return class BaseClass extends BasePlugin {
@@ -12,7 +14,22 @@ export default function (BasePlugin) {
     generateBefore(opts, next) {
       const docpad = this.docpad;
 
-      docpad.getCollection();
+      const config = this.getConfig();
+
+      if(!config) {
+        console.log('There is no schema given!');
+        return next();
+      }
+
+      const collections = Object.keys(config);
+      console.log(collections);
+      collections.forEach((col) => {
+        const currentCol = docpad.getCollection(col).toJSON();
+
+        currentCol.forEach((record) => {
+          console.log(record.meta);
+        });
+      });
     }
   };
 
