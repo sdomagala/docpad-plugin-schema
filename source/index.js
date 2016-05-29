@@ -33,7 +33,7 @@ export default function (BasePlugin) {
 
           if(isValidated.errors && isValidated.errors.length) {
 
-            console.log(`Document ${record.relativeDirPath} isn't following schema, it will not render`);
+            console.log(`Document ${record.relativePath} isn't following schema, it will not render`);
 
             docpad
               .getFile({
