@@ -1,4 +1,4 @@
-import jsonschema from 'jsonschema';
+import { validate } from 'jsonschema';
 
 export default function (BasePlugin) {
 
@@ -26,8 +26,10 @@ export default function (BasePlugin) {
       collections.forEach((col) => {
         const currentCol = docpad.getCollection(col).toJSON();
 
+        const schema = collections[col];
+
         currentCol.forEach((record) => {
-          console.log(record.meta);
+          console.log(validate(record.meta, schema));
         });
       });
     }

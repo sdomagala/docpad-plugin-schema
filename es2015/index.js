@@ -40,8 +40,10 @@ exports.default = function (BasePlugin) {
         collections.forEach(function (col) {
           var currentCol = docpad.getCollection(col).toJSON();
 
+          var schema = collections[col];
+
           currentCol.forEach(function (record) {
-            console.log(record.meta);
+            console.log((0, _jsonschema.validate)(record.meta, schema));
           });
         });
       }
@@ -57,10 +59,6 @@ exports.default = function (BasePlugin) {
 };
 
 var _jsonschema = require('jsonschema');
-
-var _jsonschema2 = _interopRequireDefault(_jsonschema);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
