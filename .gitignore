@@ -27,7 +27,6 @@ esnext/
 .env
 .idea
 .cake_task_cache
-.travis.yml
 
 
 # =====================================
