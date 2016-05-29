@@ -26,7 +26,7 @@ export default function (BasePlugin) {
       collections.forEach((col) => {
         const currentCol = docpad.getCollection(col).toJSON();
 
-        const schema = collections[col];
+        const schema = config[col];
 
         currentCol.forEach((record) => {
           const isValidated = validate(record.meta, schema);
@@ -34,7 +34,7 @@ export default function (BasePlugin) {
           if(isValidated.errors && isValidated.errors.length) {
             docpad
               .getFile({
-                _id: record.id
+                _id: record._id
               })
               .setMeta({
                 write: false,

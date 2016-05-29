@@ -40,14 +40,14 @@ exports.default = function (BasePlugin) {
         collections.forEach(function (col) {
           var currentCol = docpad.getCollection(col).toJSON();
 
-          var schema = collections[col];
+          var schema = config[col];
 
           currentCol.forEach(function (record) {
             var isValidated = (0, _jsonschema.validate)(record.meta, schema);
 
             if (isValidated.errors && isValidated.errors.length) {
               docpad.getFile({
-                _id: record.id
+                _id: record._id
               }).setMeta({
                 write: false,
                 render: false
