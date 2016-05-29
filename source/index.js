@@ -17,7 +17,7 @@ export default function (BasePlugin) {
       const config = this.getConfig();
 
       if(!config) {
-        console.log('There is no schema given!');
+        docpad.log('warn', 'There is no schema given!');
         return next();
       }
 
@@ -32,8 +32,7 @@ export default function (BasePlugin) {
           const isValidated = validate(record.meta, schema);
 
           if(isValidated.errors && isValidated.errors.length) {
-
-            console.log(`Document ${record.relativePath} isn't following schema, it will not render`);
+            docpad.log('warn', `Document ${record.relativePath} isn't following schema, it will not render`);
 
             docpad
               .getFile({
