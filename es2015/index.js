@@ -46,6 +46,9 @@ exports.default = function (BasePlugin) {
             var isValidated = (0, _jsonschema.validate)(record.meta, schema);
 
             if (isValidated.errors && isValidated.errors.length) {
+
+              console.log('Document ' + record.relativeDirPath + ' isn\'t following schema, it will not render');
+
               docpad.getFile({
                 _id: record._id
               }).setMeta({
