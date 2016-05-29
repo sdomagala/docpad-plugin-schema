@@ -1,160 +1,131 @@
-# Bevry's Project Base Files
-Files we use when scaffolding new projects.
+<!-- TITLE/ -->
+
+<h1>docpad-plugin-schema</h1>
+
+<!-- /TITLE -->
 
 
-## Setup
+<!-- BADGES/ -->
 
-### init
+<span class="badge-travisci"><a href="http://travis-ci.org/sdomagala/docpad-plugin-schema" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/sdomagala/docpad-plugin-schema/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-npmversion"><a href="https://npmjs.org/package/docpad-plugin-schema" title="View this project on NPM"><img src="https://img.shields.io/npm/v/docpad-plugin-schema.svg" alt="NPM version" /></a></span>
+<span class="badge-npmdownloads"><a href="https://npmjs.org/package/docpad-plugin-schema" title="View this project on NPM"><img src="https://img.shields.io/npm/dm/docpad-plugin-schema.svg" alt="NPM downloads" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/sdomagala/docpad-plugin-schema" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/sdomagala/docpad-plugin-schema.svg" alt="Dependency Status" /></a></span>
+<span class="badge-daviddmdev"><a href="https://david-dm.org/sdomagala/docpad-plugin-schema#info=devDependencies" title="View the status of this project's development dependencies on DavidDM"><img src="https://img.shields.io/david/dev/sdomagala/docpad-plugin-schema.svg" alt="Dev Dependency Status" /></a></span>
+<br class="badge-separator" />
+<span class="badge-slackin"><a href="https://slack.bevry.me" title="Join this project's slack community"><img src="https://slack.bevry.me/badge.svg" alt="Slack community badge" /></a></span>
+<span class="badge-patreon"><a href="http://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
+<span class="badge-gratipay"><a href="https://www.gratipay.com/bevry" title="Donate weekly to this project using Gratipay"><img src="https://img.shields.io/badge/gratipay-donate-yellow.svg" alt="Gratipay donate button" /></a></span>
+<span class="badge-flattr"><a href="https://flattr.com/profile/balupton" title="Donate to this project using Flattr"><img src="https://img.shields.io/badge/flattr-donate-yellow.svg" alt="Flattr donate button" /></a></span>
+<span class="badge-paypal"><a href="https://bevry.me/paypal" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
+<span class="badge-bitcoin"><a href="https://bevry.me/bitcoin" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
+<span class="badge-wishlist"><a href="https://bevry.me/wishlist" title="Buy an item on our wishlist for us"><img src="https://img.shields.io/badge/wishlist-donate-yellow.svg" alt="Wishlist browse button" /></a></span>
 
-Setup your new project:
-
-``` shell
-npm init
-touch README.md
-```
-
-
-### files
-
-Download the relevant files for your project:
-
-``` shell
-wget -N https://raw.githubusercontent.com/bevry/base/master/.editorconfig
-wget -N https://raw.githubusercontent.com/bevry/base/master/.eslintrc.js
-wget -N https://raw.githubusercontent.com/bevry/base/master/.gitignore
-wget -N https://raw.githubusercontent.com/bevry/base/master/LICENSE.md
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/.npmignore
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/CONTRIBUTING.md
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/index.js
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/.travis.yml
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/.flowconfig
-
-wget -N https://raw.githubusercontent.com/bevry/base/master/package.json
-wget -N https://raw.githubusercontent.com/bevry/base/master/HISTORY.md
-```
-
-And add them to git:
-
-``` shell
-git add .editorconfig .eslintrc.js .gitignore .flowconfig .npmignore .travis.yml
-git add .
-mkdir source
-touch source/index.js
-touch source/test.js
-touch source/bin.js
-```
+<!-- /BADGES -->
 
 
-### readme
+<!-- DESCRIPTION/ -->
 
-Use the following inside your `README.md` file to have [projectz](https://github.com/bevry/projectz) generate most of it for you, leaving you up the "Usage" section.
+Lets you attach JSON schema to your collection
 
-``` markdown
+<!-- /DESCRIPTION -->
 
-<!-- TITLE -->
 
-<!-- BADGES -->
+<!-- INSTALL/ -->
 
-<!-- DESCRIPTION -->
+<h2>Install</h2>
 
-<!-- INSTALL -->
+Install this DocPad plugin by entering <code>docpad install schema</code> into your terminal.
+
+<!-- /INSTALL -->
+
 
 ## Usage
 
-<!-- HISTORY -->
+To use this plugin you need to add `schema` record into plugins object in `docpad.coffee`, where fields match collection, if you have defined collection `posts` here is example how it can look.
 
-<!-- CONTRIBUTE -->
-
-<!-- BACKERS -->
-
-<!-- LICENSE -->
+```
+plugins:
+  schema:
+    posts: require './schema/postSchema.json'
 ```
 
+Schema is compliant with JSON Schema draft v4.
 
-### dependencies
+Basic usage:
 
-Add the appropriate development dependencies for what you want to do:
+```
+{
+  "type": "object",
+  "properties": {
+    "metadata": {"type": "string"},
+    "sort_metadata": {"type": "number"}
+  },
+  "required": ["metadata", "sort_metadata"]
+}
 
-``` shell
-npm install --save-dev projectz  # for projectz meta+package file compilation
-npm install --save-dev eslint  # for eslint parsing and linting
-npm install --save-dev babel-cli babel-preset-es2015 # for babel es6+ to es5 compilation
-npm install --save editions # for esnext auto loading
-npm install --save-dev eslint-plugin-babel # for esnext linting
-npm install --save-dev assert-helpers joe joe-reporter-console  # for testing
-npm install --save-dev documentation  # for documentation
-npm install --save-dev flow-bin # for flow type
-npm install --save-dev eslint-plugin-react # for react linting
 ```
 
+<!-- HISTORY/ -->
 
-### package.json
+<h2>History</h2>
 
-Finally copy the relevant parts of our [`package.json` template](https://github.com/bevry/base/blob/master/package.json) for your consumption.
+<a href="https://github.com/sdomagala/docpad-plugin-schema/blob/master/HISTORY.md#files">Discover the release history by heading on over to the <code>HISTORY.md</code> file.</a>
 
-
-### travis
-
-Run the following in the project to add notifications for the builds (requires the environment variables to be set):
-
-``` shell
-travis encrypt --org "$SLACK_SUBDOMAIN:$SLACK_TRAVIS_TOKEN#updates" --add notifications.slack
-travis encrypt --org "$TRAVIS_NOTIFICATION_EMAIL" --add notifications.email.recipients
-```
-
-If you get [token errors with travis](https://github.com/travis-ci/travis.rb/issues/315), add this to you dotfiles:
-
-``` shell
-export TRAVIS_ACCESS_TOKEN='the token value found in ~/.travis/config.yml'
-alias travisencrypt='travis encrypt -t "$TRAVIS_ACCESS_TOKEN"'
-```
-
-And use this instead:
-
-``` shell
-travisencrypt --org "$SLACK_SUBDOMAIN:$SLACK_TRAVIS_TOKEN#updates" --add notifications.slack
-travisencrypt --org "$TRAVIS_NOTIFICATION_EMAIL" --add notifications.email.recipients
-```
+<!-- /HISTORY -->
 
 
+<!-- CONTRIBUTE/ -->
 
-## Legacy
+<h2>Contribute</h2>
 
-### [ESNextGuardian](https://github.com/bevry/esnextguardian)
-[Our `esnextguardian.js` file.](https://github.com/bevry/base/blob/34fc820c8d87f1f21706ce7e26882b6cd5437368/esnextguardian.js)
-Dropped in favour of [Editions](https://github.com/bevry/editions).
+<a href="https://github.com/sdomagala/docpad-plugin-schema/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
 
-### [Nakefile](https://github.com/bevry/base/wiki/Nakefile)
-[Our `nakefile.js` file.](https://github.com/bevry/base/blob/34fc820c8d87f1f21706ce7e26882b6cd5437368/nakefile.js)
-Dropped in favour of NPM Scripts.
-
-### [CoffeeLint](http://www.coffeelint.org)
-[Our `coffeelint.json` file.](https://github.com/bevry/base/blob/34fc820c8d87f1f21706ce7e26882b6cd5437368/coffeelint.json)
-Dropped in favour of ESNext.
-
-### [Cyclic](https://github.com/bevry/base/wiki/Cyclic)
-[Our `cyclic.js` file.](https://github.com/bevry/base/blob/34fc820c8d87f1f21706ce7e26882b6cd5437368/cyclic.js)
-Dropped in favour of npm `>=2`.
-
-### [JSHint](http://jshint.com)
-[Our `.jshintrc` file.](https://github.com/bevry/base/blob/b1335ea16811d2870dbde87c3a1a606797db54a0/.jshintrc)
-Dropped in favour of [ESLint](http://eslint.org).
-
-### [JSCS](http://jscs.info)
-[Our `.jscrc` file.](https://github.com/bevry/base/blob/34fc820c8d87f1f21706ce7e26882b6cd5437368/.jscrc)
-Dropped in favour of [ESLint](http://eslint.org).
+<!-- /CONTRIBUTE -->
 
 
-## History
+<!-- BACKERS/ -->
 
-[View the commit history for the release history.](https://github.com/bevry/base/commits/master)
+<h2>Backers</h2>
+
+<h3>Maintainers</h3>
+
+These amazing people are maintaining this project:
+
+<ul><li><a href="https://github.com/sdomagala">Sebastian Domagała</a> — <a href="https://github.com/sdomagala/docpad-plugin-schema/commits?author=sdomagala" title="View the GitHub contributions of Sebastian Domagała on repository sdomagala/docpad-plugin-schema">view contributions</a></li></ul>
+
+<h3>Sponsors</h3>
+
+No sponsors yet! Will you be the first?
+
+<span class="badge-patreon"><a href="http://patreon.com/bevry" title="Donate to this project using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button" /></a></span>
+<span class="badge-gratipay"><a href="https://www.gratipay.com/bevry" title="Donate weekly to this project using Gratipay"><img src="https://img.shields.io/badge/gratipay-donate-yellow.svg" alt="Gratipay donate button" /></a></span>
+<span class="badge-flattr"><a href="https://flattr.com/profile/balupton" title="Donate to this project using Flattr"><img src="https://img.shields.io/badge/flattr-donate-yellow.svg" alt="Flattr donate button" /></a></span>
+<span class="badge-paypal"><a href="https://bevry.me/paypal" title="Donate to this project using Paypal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" alt="PayPal donate button" /></a></span>
+<span class="badge-bitcoin"><a href="https://bevry.me/bitcoin" title="Donate once-off to this project using Bitcoin"><img src="https://img.shields.io/badge/bitcoin-donate-yellow.svg" alt="Bitcoin donate button" /></a></span>
+<span class="badge-wishlist"><a href="https://bevry.me/wishlist" title="Buy an item on our wishlist for us"><img src="https://img.shields.io/badge/wishlist-donate-yellow.svg" alt="Wishlist browse button" /></a></span>
+
+<h3>Contributors</h3>
+
+These amazing people have contributed code to this project:
+
+<ul><li><a href="https://github.com/sdomagala">Sebastian Domagała</a> — <a href="https://github.com/sdomagala/docpad-plugin-schema/commits?author=sdomagala" title="View the GitHub contributions of Sebastian Domagała on repository sdomagala/docpad-plugin-schema">view contributions</a></li></ul>
+
+<a href="https://github.com/sdomagala/docpad-plugin-schema/blob/master/CONTRIBUTING.md#files">Discover how you can contribute by heading on over to the <code>CONTRIBUTING.md</code> file.</a>
+
+<!-- /BACKERS -->
 
 
-## License
-Licensed under the [Creative Commons Zero](http://creativecommons.org/publicdomain/zero/1.0/) making it [public domain](https://en.wikipedia.org/wiki/Public_domain) so you can do whatever you wish with it without worry (you can even remove this notice!)
-<br/>Copyright &copy; 2011+ [Benjamin Lupton](http://balupton.com)
+<!-- LICENSE/ -->
+
+<h2>License</h2>
+
+Unless stated otherwise all works are:
+
+<ul><li>Copyright &copy; 2016+ <a href="http://bevry.me">Bevry Pty Ltd</a></li></ul>
+
+and licensed under:
+
+<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+<!-- /LICENSE -->

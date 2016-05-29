@@ -1,18 +1,14 @@
 {
-  "name": "docpad-plugin-less",
-  "version": "2.4.0",
+  "name": "docpad-plugin-schema",
+  "version": "1.0.1",
   "description": "Lets you attach JSON schema to your collection",
   "homepage": "http://docpad.org/plugin/schema",
   "license": "MIT",
   "keywords": [
     "docpad",
     "docpad-plugin",
-    "less",
-    "less.js",
-    "lesscss",
-    "css",
-    "styles",
-    "styling"
+    "schema",
+    "json-schema"
   ],
   "badges": {
     "list": [
