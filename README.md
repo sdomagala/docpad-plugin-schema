@@ -42,12 +42,13 @@ Install this DocPad plugin by entering <code>docpad install schema</code> into y
 
 ## Usage
 
-To use this plugin you need to add `schema` record into plugins object in `docpad.coffee`, where fields match collection, if you have defined collection `posts` here is example how it can look.
+To use this plugin you need to add `schema` record into plugins object in `docpad.coffee`.
+Fields must match collection names, so if you have defined collection `posts` here is example how it can look.
 
 ```
 plugins:
   schema:
-    posts: require './schema/postSchema.json'
+    posts: require './schema/postSchema.json' # schema for posts collection
 ```
 
 Schema is compliant with JSON Schema draft v4.
