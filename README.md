@@ -74,6 +74,8 @@ Basic usage:
 - more test coverage
 - attach complex schemas
 
+*To be implemented if there is someone to actually use it, so feel free to file issues*
+
 <!-- HISTORY/ -->
 
 <h2>History</h2>
