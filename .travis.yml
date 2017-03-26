@@ -12,6 +12,7 @@ install: npm run-script setup
 before_script: npm run-script compile
 script: npm test
 deploy:
+  skip_cleanup: true
   before_deploy: "npm run prepare && npm run release:tag"
   after_deploy: "npm run release:push"
   provider: npm
