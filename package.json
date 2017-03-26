@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-schema",
-  "version": "2.0.4",
+  "version": "2.0.6",
   "description": "Lets you attach JSON schema to your collection",
   "homepage": "http://docpad.org/plugin/schema",
   "license": "MIT",
@@ -93,7 +93,7 @@
     "prepare": "npm run compile && npm run test && npm run meta",
     "release": "npm run prepare && npm run release:publish && npm run release:tag && npm run release:push",
     "release:publish": "npm publish",
-    "release:tag": "git tag v$npm_package_version -a",
+    "release:tag": "git tag -a v$npm_package_version -m v$npm_package_version",
     "release:push": "git push origin master && git push origin --tags",
     "pretest": "npm run test:eslint",
     "test:eslint": "eslint ./source",
