@@ -1,28 +1,23 @@
-# 2016 April 27
-# https://github.com/bevry/base
-
-# Use the latest travis infrastructure
 sudo: false
-
-# We use node
 language: node_js
 node_js:
-  - "0.12"
-  - "4"
-  - "5"
-  - "6"
+- '0.12'
+- '4'
+- '5'
+- '6'
 cache:
   directories:
-    - node_modules
-
-# Prepare our tests
-# Ensure the project is setup correctly and compiled
-install: "npm run-script setup"
-before_script: "npm run-script compile"
-
-# Run our tests
-script: "npm test"
-
-# Custom notifications
-# travis encrypt --org "$SLACK_SUBDOMAIN:$SLACK_TRAVIS_TOKEN#updates" --add notifications.slack
-# travis encrypt --org "$TRAVIS_NOTIFICATION_EMAIL" --add notifications.email.recipients
+  - node_modules
+install: npm run-script setup
+before_script: npm run-script compile
+script: npm test
+deploy:
+  before_deploy: "npm run prepare && npm run release:tag"
+  after_deploy: "npm run release:push"
+  provider: npm
+  email: sebdom93@gmail.com
+  api_key:
+    secure: O+xm2nUgTLtLTQnZsP9aIplf3dYHdrW7BWW+fpU4ibuS0Hwa7/Gxq8ijtu1oUc1GbKVXYeQMWIg2twTdZ82s+PmR0cLChCRmZvzSysVI/2PmpRhtB09q9C5k6v/iJuvLt+wF2P6klNqHVsR+kO3ON6a3OXwWaS3vvLzjXtEU4sKk6GXGatS9C/AC5A0F66ukMI7dln3S/l7dco0r+FcLXBTT9Pj0hHeiDbKkf5c6m0pY6t3EhOeu+19EFynXzAv9qQbhgxvygkUzP7NnZE5V9tUMUiJzp66WR3Y0BMRbVTr5mZw3tL1WH/9hPM3BLad1ZfFsOCc6AoT7M9VvDuOKicaGyM9125li3PruiJUSD0nsvhqMdDmdTmVNdHLGq6Pzy4FXbm+wOFeAEhlVZ2OQM9HUlH5MyN42ITMUsuUg1hTsBO2AlNX3KbHuWiuq2jzrJPYJX04e0m1GL2N4MXPkyJE+NsQAKUOI5TiuExiojNtntU+VjylgtXkOHmyWqIpCAZ5jMXX+WmVelUJVH+ImalOACPwzClVabZiQ8nRMxXRMCswr06cM6qPlbvXvmiEX1IGrqGUlyrnOYiR+BMgvhXkVPH2c8rn2H/fXaiWNdIBCxf1dxrTXc4lhzC22gAtZKRnyrmd8/3Kit0/3GPa7jDq3QdpQLdwXdX73Fngctg4=
+  on:
+    repo: sdomagala/docpad-plugin-schema
+    branch: master
