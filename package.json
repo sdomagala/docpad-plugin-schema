@@ -1,6 +1,6 @@
 {
   "name": "docpad-plugin-schema",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Lets you attach JSON schema to your collection",
   "homepage": "http://docpad.org/plugin/schema",
   "license": "MIT",
