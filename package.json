@@ -95,7 +95,7 @@
     "release:publish": "npm publish",
     "release:tag": "git tag -a v$npm_package_version -m v$npm_package_version",
     "release:bump-version": "npm version $VERSION_BUMP -f --no-git-tag-version -m 'Upgraded to %s version'",
-    "release:push": "git push https://$GIT_TOKEN:@github.com/$TRAVIS_REPO_SLUG master && git push https://$GIT_TOKEN:@github.com/$TRAVIS_REPO_SLUG --tags",
+    "release:push": "git add -A && git commit -m 'CI' && git push https://$GIT_TOKEN:@github.com/$TRAVIS_REPO_SLUG master && git push https://$GIT_TOKEN:@github.com/$TRAVIS_REPO_SLUG --tags",
     "pretest": "npm run test:eslint",
     "test:eslint": "eslint ./source",
     "test:flow": "flow check",
